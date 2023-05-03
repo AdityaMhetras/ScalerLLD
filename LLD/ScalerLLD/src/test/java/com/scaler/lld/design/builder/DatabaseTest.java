@@ -49,4 +49,11 @@ public class DatabaseTest {
         Assert.assertEquals("if ctor is called, host should be localhost",DatabaseType.MY_SQL,database.getType());
 
     }
+
+    @Test
+    public void testLombokBuilder() {
+        Database database = Database.builder().port(3306).type(DatabaseType.MY_SQL).host("localhost").build();
+        Assert.assertEquals("if ctor is called, host should be localhost","localhost",database.getHost());
+        Assert.assertEquals("if ctor is called, host should be localhost",DatabaseType.MY_SQL,database.getType());
+    }
 }

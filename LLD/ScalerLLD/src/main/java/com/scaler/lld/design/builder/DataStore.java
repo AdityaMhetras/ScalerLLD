@@ -24,6 +24,7 @@ public class DataStore {
     public static class DatastoreBuilder {
 
         //step 3 - copy all fields from outer class
+        //fix duplicate fields in builder class
         private String host;
         private Integer port;
         private String username;

@@ -1,15 +1,13 @@
 package com.scaler.lld.design.builder;
 
-import lombok.Generated;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Map;
 
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
 public class Database {
 
     private String host;
