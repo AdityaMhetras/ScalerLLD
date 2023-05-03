@@ -8,10 +8,13 @@ public class ConnectionPool {
     private ConnectionPool() {}
 
     //step 2 - Global access point
-    public synchronized static ConnectionPool getInstance() {
+    public static ConnectionPool getInstance() {
         //step 4 - if present return, else create, set, return
-        if(instance == null) {
-            instance = new ConnectionPool();
+        //this approach is better bot only 1 thread can access at a time
+        synchronized(ConnectionPool.class) {
+            if(instance == null) {
+                instance = new ConnectionPool();
+            }
         }
         return instance;
     }
