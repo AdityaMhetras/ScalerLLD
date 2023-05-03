@@ -1,0 +1,19 @@
+package com.scaler.lld.design.builder;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class DatastoreTest {
+
+    @Test
+    public void testBuilder() {
+        DataStore builder = DataStore
+                .builder()
+                .withHost("localhost")
+                .ofType(DatabaseType.MY_SQL)
+                .build();
+        Assert.assertEquals("if host is called, host should be localhost","localhost",builder.getHost());
+        Assert.assertEquals("if type is called, type should be MYSQL",DatabaseType.MY_SQL,builder.getType());
+
+    }
+}
