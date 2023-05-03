@@ -32,24 +32,38 @@ public class DataStore {
         private DatabaseType type;
 
         //step 4 add fluent interfaces for setters
-        public DatastoreBuilder withHost(String host) {
+        public DatastoreBuilder init(String host, Integer port) {
             this.host = host;
+            this.port = port;
             return this;
         }
 
-        public DatastoreBuilder ofType(DatabaseType type) {
-            this.type = type;
+        public DatastoreBuilder mysql() {
+            this.type = DatabaseType.MY_SQL;
             return this;
         }
 
         //step 5 - add a build hook
         public DataStore build() {
+
+            boolean isValid = validate();
+            if (!isValid) {
+                throw new RuntimeException("object is not valid");
+            }
+
             DataStore dataStore = new DataStore();
             dataStore.host = host;
             dataStore.port = port;
             dataStore.type = type;
 
             return dataStore;
+        }
+
+        private  boolean validate() {
+            if(type == null) {
+                return false;
+            }
+            return true;
         }
     }
 }
