@@ -10,12 +10,16 @@ public class ConnectionPool {
     //step 2 - Global access point
     public static ConnectionPool getInstance() {
         //step 4 - if present return, else create, set, return
-        //this approach is better bot only 1 thread can access at a time
-        synchronized(ConnectionPool.class) {
-            if(instance == null) {
-                instance = new ConnectionPool();
+        //this approach is double check lock
+        if(instance == null) {
+            synchronized(ConnectionPool.class) {
+                if(instance == null) {
+                    instance = new ConnectionPool();
+                }
             }
         }
         return instance;
     }
 }
+
+// Double checked locking
