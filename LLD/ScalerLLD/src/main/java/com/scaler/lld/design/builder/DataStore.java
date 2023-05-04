@@ -24,23 +24,21 @@ public class DataStore {
     public static class DatastoreBuilder {
 
         //step 3 - copy all fields from outer class
+        private DataStore dataStore;
         //fix duplicate fields in builder class
-        private String host;
-        private Integer port;
-        private String username;
-        private String password;
-        private Long id;
-        private DatabaseType type;
+        public  DatastoreBuilder() {
+            this.dataStore = new DataStore();
+        }
 
         //step 4 add fluent interfaces for setters
         public DatastoreBuilder init(String host, Integer port) {
-            this.host = host;
-            this.port = port;
+            dataStore.host = host;
+            dataStore.port = port;
             return this;
         }
 
         public DatastoreBuilder mysql() {
-            this.type = DatabaseType.MY_SQL;
+            dataStore.type = DatabaseType.MY_SQL;
             return this;
         }
 
@@ -52,16 +50,16 @@ public class DataStore {
                 throw new RuntimeException("object is not valid");
             }
 
-            DataStore dataStore = new DataStore();
-            dataStore.host = host;
-            dataStore.port = port;
-            dataStore.type = type;
+            DataStore instance = new DataStore();
+            instance.host = dataStore.host;
+            instance.port = dataStore.port;
+            instance.type = dataStore.type;
 
             return dataStore;
         }
 
         private  boolean validate() {
-            if(type == null) {
+            if(dataStore.type == null) {
                 return false;
             }
             return true;
