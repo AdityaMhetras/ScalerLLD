@@ -1,4 +1,4 @@
-package com.scaler.lld.design.button;
+package com.scaler.lld.design.button.models;
 
 //step 2 create concrete classes
 public class RoundButton implements Button{

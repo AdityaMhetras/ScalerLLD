@@ -1,5 +1,6 @@
-package com.scaler.lld.design.button;
+package com.scaler.lld.design.button.models;
 
+//step 2 Concrete product classes
 public class PrimaryButton implements Button{
 
     @Override
