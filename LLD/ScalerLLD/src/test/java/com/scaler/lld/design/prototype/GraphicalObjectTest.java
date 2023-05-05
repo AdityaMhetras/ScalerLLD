@@ -11,13 +11,13 @@ import java.util.Random;
 
 public class GraphicalObjectTest {
 
-    private static BackgroundRegistry registry;
+    private Registry<BackgroundObject,BackgroundObjectType> registry;
 
     //setup and teardown
     //@Before will run this method before every test
     @Before
     public void setup() {
-        registry = new BackgroundRegistry();
+        registry = new Registry<>();
         BackgroundObject treeproto = new BackgroundObject(0,0,0,0,BackgroundObjectType.TREE);
         registry.store(BackgroundObjectType.TREE, treeproto);
     }
