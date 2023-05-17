@@ -1,0 +1,27 @@
+@startuml
+
+left to right direction
+
+actor Student
+actor Instructor
+
+rectangle Scaler {
+    usecase "Join Class" as Join
+    usecase "Join Class as host" as JoinHost
+    usecase "Join Class as audience" as JoinAudience
+
+    JoinHost .> Join : extends
+    JoinAudience .> Join : extends
+
+    usecase "Schedule a mentor session" as Schedule
+
+    usecase "Check mentor availability" as Availability
+
+    Schedule .> Availability : includes
+}
+
+Student --> Join
+Instructor --> Join
+Student --> Schedule
+
+@enduml
