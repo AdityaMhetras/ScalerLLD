@@ -1,25 +1,34 @@
 ```mermaid
 classDiagram
     class Pen {
+        <<abstract>>
         -String brand
         -String name
         -PenType type
         -double price
+        +write()* void
+    }
+    
+    class GelPen {
         -Refill refill
+        +write() void
+    }
+    
+    class BallPen {
+        -Refill refill
+        +write() void
+    }
+
+    class FountainPen {
         -Ink ink
         -Nib nib
         +write() void
     }
-
-    class PenType {
-        <<enumeration>>
-        GEL
-        BALL
-        FOUNTAIN
-        MARKER
-        THROW_AWAY
-    }
-
+    
+    Pen <|-- GelPen
+    Pen <|-- BallPen
+    Pen <|-- FountainPen
+        
     class Refill {
         -RefillType type
         -Ink ink
@@ -27,11 +36,6 @@ classDiagram
         -boolean refillable
     }
 
-    class RefillType {
-        <<enumeration>>
-        GEL
-        BALL
-    }
 
     class Ink {
         -String colour
@@ -39,36 +43,18 @@ classDiagram
         -InkType type
     }
 
-    class InkType {
-        <<enumeration>>
-        GEL
-        BALL
-        FOUNTAIN
-    }
 
     class Nib {
         -double radius
         -NibType type
     }
 
-    class NibType {
-        <<enumeration>>
-        GEL
-        BALL
-        FOUNTAIN
-    }
-
-    Pen "*" --o  "1" PenType : has a
-    Pen "1" --* "1" Refill : has a
-    Pen "1" --* "1" Ink : has a
-    Pen "1" --* "1" Nib : has a
-
-    Refill "*" --* "1" RefillType : has a
-    Refill "1" --* "1" Ink : has a
-    Refill "1" --* "1" Nib : has a
-
-    Ink "*" --* "1" InkType : has a
-
-    Nib "*" --* "1" NibType : has a
+    
+    GelPen "1" --* "1" Refill
+    BallPen "1" --* "1" Refill
+    FountainPen "1" --* "1" Ink    
+    FountainPen "1" --* "1" Nib
+    Refill "1" --* "1" Ink
+    Refill "1" --* "1" Nib    
 
 ```
