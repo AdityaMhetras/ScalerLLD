@@ -10,42 +10,41 @@ classDiagram
         +write()* void
     }
     
-    class Refillable {
+    class RefillPen {
         <<interface>>
-        +changeRefill(Refill) void
+        +changeRefill(Refill)* void
+        +getRefill()* Refill
+        +isRefillable()* boolean
     }
     
-    class NonRefillable {
-        <<interface>>
-        +changeInk(Ink) void
-    }
-    
-    Pen <|-- GelPen
-    Refillable <|-- GelPen
-    
-    Pen <|-- BallPen
-    Refillable <|-- BallPen
-    
-    Pen <|-- FountainPen
-    NonRefillable <|-- FountainPen
-
-    
-    class WritingStrategy {
-        <<interface>>
-        +write()* void
-    }
-    
-    class RoughWritingStrategy {
-            +write() void
-    }
- 
-    class SmoothWritingStrategy {
-            +write() void
+    class GelPen {
+        -Refill refill
+        +write() void
+        +changeRefill() void
+        +getRefill() Refill
+        +isRefillable() boolean
     }
 
-    WritingStrategy <|-- RoughWritingStrategy    
-    WritingStrategy <|-- SmoothWritingStrategy
+    class BallPen {
+        -Refill refill
+        +write() void
+        +changeRefill() void
+        +getRefill() Refill
+        +isRefillable() boolean
+    }
     
-    Pen "M" "" --o "1" WritingStrategy : has a
+    class FountainPen {
+        -Ink ink
+        -Nib nib
+        +write() void
+    }
+    Pen <|-- GelPen : extends
+    RefillPen <|-- GelPen : implements
+    
+    Pen <|-- BallPen : extends
+    RefillPen <|-- BallPen  : implements
+    
+    Pen <|-- FountainPen : extends
+
 
 ```
