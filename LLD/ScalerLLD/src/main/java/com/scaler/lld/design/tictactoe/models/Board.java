@@ -1,6 +1,7 @@
 package com.scaler.lld.design.tictactoe.models;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,5 +17,16 @@ public class Board {
             IntStream.range(0, columnCount).forEach(column -> rowCells.add(new Cell(row, column)));
             cells.add(rowCells);
         });
+    }
+
+    public boolean isEmpty(int row, int column) {
+        return cells.get(row).get(column).getSymbol() == null;
+    }
+
+    public List<Cell> getAvailableCells() {
+        return cells.stream()
+                .flatMap(List::stream)
+                .filter(cell -> cell.getSymbol() == null)
+                .toList();
     }
 }
