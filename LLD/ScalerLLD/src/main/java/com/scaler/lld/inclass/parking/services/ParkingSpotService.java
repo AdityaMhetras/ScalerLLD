@@ -1,30 +1,24 @@
 package com.scaler.lld.inclass.parking.services;
 
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
 import com.scaler.lld.inclass.parking.models.ParkingLot;
 import com.scaler.lld.inclass.parking.models.ParkingSpot;
+import com.scaler.lld.inclass.parking.models.VehicleType;
+import com.scaler.lld.inclass.parking.repository.ParkingLotRepository;
+import com.scaler.lld.inclass.parking.repository.ParkingSpotRepository;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 public class ParkingSpotService {
 
     private ParkingSpotRepository repository;
+    public void createParkingSpots(ParkingLot persistentLot) {
 
-    public List<ParkingSpot> createSpots(ParkingLot parkingLot) {
-        List<ParkingSpot> parkingSpots = parkingLot
-                .getFloors()
-                .stream()
-                .flatMap(floor -> floor.getParkingSpots().stream())
-                .collect(Collectors.toList());
-        return repository.saveAll(parkingSpots);
     }
 
-}
+    public ParkingSpot allocateSpot(Long parkingLotId, VehicleType vehicleType) {
+        // Get the first slot available and of the same type
 
-// [[1, 2], [3, 4]] -> [1, 2, 3, 4] -> Flattening
-// .filter/.map -> Iterable
-// .stream -> parallelStream
+        return repository.findOneByVehicleTypeAndStatusAvailable(vehicleType);
+    }
+
+    public void update(ParkingSpot spot) {
+    }
+}

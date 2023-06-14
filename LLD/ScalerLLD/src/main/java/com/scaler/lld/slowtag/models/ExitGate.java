@@ -1,4 +1,4 @@
-package com.scaler.lld.inclass.parking.models;
+package com.scaler.lld.slowtag.models;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;

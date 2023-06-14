@@ -1,4 +1,4 @@
-package com.scaler.lld.inclass.parking.models;
+package com.scaler.lld.slowtag.models;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
@@ -14,8 +14,5 @@ public class ParkingSpot extends BaseModel {
                 .spotType(SpotType.MEDIUM)
                 .spotStatus(SpotStatus.AVAILABLE)
                 .build();
-    }
-
-    public void setSpotStatus(SpotStatus filled) {
     }
 }
