@@ -21,6 +21,10 @@ public class TicketService {
         this.strategy = strategy;
     }
 
+    public Ticket save(Long ticketId) {
+
+        return ticketRepository.save(getTicket(ticketId));
+    }
 
     public Ticket createTicket(IssueTicketRequest request) {
 
@@ -45,5 +49,9 @@ public class TicketService {
                 .build();
 
         return  ticketRepository.save(ticket);
+    }
+
+    public Ticket getTicket(Long ticketId) {
+        return ticketRepository.get(ticketId);
     }
 }

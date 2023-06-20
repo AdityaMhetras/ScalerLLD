@@ -6,4 +6,8 @@ public class TicketRepository {
     public Ticket save(Ticket ticket) {
         return null;
     }
+
+    public Ticket get(Long ticketId) {
+        return null;
+    }
 }

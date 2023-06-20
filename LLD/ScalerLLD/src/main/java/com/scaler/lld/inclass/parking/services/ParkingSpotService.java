@@ -21,4 +21,8 @@ public class ParkingSpotService {
 
     public void update(ParkingSpot spot) {
     }
+
+    public ParkingSpot getSpot(Long spotId) {
+        return null;
+    }
 }
