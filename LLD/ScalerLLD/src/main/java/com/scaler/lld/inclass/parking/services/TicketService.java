@@ -1,23 +1,31 @@
 package com.scaler.lld.inclass.parking.services;
 
 import com.scaler.lld.inclass.parking.dtos.IssueTicketRequest;
+import com.scaler.lld.inclass.parking.interfaces.SpotAllotmentStrategy;
 import com.scaler.lld.inclass.parking.models.ParkingSpot;
 import com.scaler.lld.inclass.parking.models.SpotStatus;
 import com.scaler.lld.inclass.parking.models.Ticket;
 import com.scaler.lld.inclass.parking.repository.TicketRepository;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
 public class TicketService {
 
-    private ParkingSpotService spotService;
+    private SpotAllotmentStrategy strategy;
     private VehicleService vehicleService;
     private TicketRepository ticketRepository;
+
+    public TicketService(SpotAllotmentStrategy strategy) {
+        this.strategy = strategy;
+    }
+
 
     public Ticket createTicket(IssueTicketRequest request) {
 
         // check if parking lot is full
-        ParkingSpot spot = spotService.allocateSpot(request.getParkingLotId(), request.getVehicleType());
+        ParkingSpot spot = strategy.allocateSpot(request.getParkingLotId(), request.getVehicleType());
         if (spot == null) {
             throw new RuntimeException("Spot not available");
         }
@@ -26,7 +34,7 @@ public class TicketService {
         spot.setSpotStatus(SpotStatus.FILLED);
 
         // persist the spot
-        spotService.update(spot);
+        strategy.update(spot);
 
         // create the ticket
         Ticket ticket = Ticket.builder()
