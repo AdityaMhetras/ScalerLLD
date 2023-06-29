@@ -1,11 +1,17 @@
 package com.scaler.bookmyshow.models;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Getter
+@NoArgsConstructor
+@Entity
+@Table(name = "user1")
 public class User extends BaseModel {
     private String email;
 
