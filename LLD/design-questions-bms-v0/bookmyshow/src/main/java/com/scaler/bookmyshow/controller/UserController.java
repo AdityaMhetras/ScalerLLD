@@ -1,19 +1,18 @@
 package com.scaler.bookmyshow.controller;
 
 import com.scaler.bookmyshow.services.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@AllArgsConstructor
 public class UserController {
 
 
     private UserService userService;
 
-
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 }
 
-// 1. ctor injection
-// add ctor
-
+// 2. setter injection
+// add setter
