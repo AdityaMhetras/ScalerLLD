@@ -3,6 +3,7 @@ package com.scaler.bookmyshow.models;
 import com.scaler.bookmyshow.enums.SeatStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class ShowSeat extends BaseModel {
