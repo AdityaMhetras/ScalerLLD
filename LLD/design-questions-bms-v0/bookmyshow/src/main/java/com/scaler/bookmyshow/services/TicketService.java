@@ -23,7 +23,7 @@ public class TicketService {
     private ShowSeatService showSeatService;
     private UserService userService;
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional(isolation = Isolation.SERIALIZABLE )
     public Ticket createTicket(CreateTicketDto request) {
         // get seats requested
         List<ShowSeat> showSeats = showSeatService.getSeats(request.getShowSeatIds());
