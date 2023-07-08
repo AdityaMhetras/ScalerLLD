@@ -2,6 +2,7 @@ package com.scaler.splitwise.controllers;
 
 import com.scaler.splitwise.dtos.CreateUserDTO;
 import com.scaler.splitwise.dtos.GetUserDTO;
+import com.scaler.splitwise.models.User;
 import com.scaler.splitwise.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,8 @@ public class UserController {
     public GetUserDTO createUser(@RequestBody CreateUserDTO request) {
         // validation
         validate(request);
-        return userService.createUser(request).dto();
+        User user = userService.createUser(request);
+        return GetUserDTO.from(user);
     }
 
     private void validate(CreateUserDTO request) {
