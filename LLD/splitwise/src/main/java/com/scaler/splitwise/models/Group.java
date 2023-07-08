@@ -13,6 +13,8 @@ public class Group extends BaseModel {
 
     private String name;
 
+    // 1 group can have multiple admins
+    // 1 admin can be a part of multiple groups
     @ManyToMany
     private List<User> admins = new ArrayList<>();
 

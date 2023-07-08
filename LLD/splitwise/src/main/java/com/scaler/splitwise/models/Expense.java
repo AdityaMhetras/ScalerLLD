@@ -22,8 +22,8 @@ public class Expense extends BaseModel {
     private List<User> users = new ArrayList<>();
 
     @ElementCollection
-    Map<User, Long> paidBy = new HashMap<>();
+    private Map<User, Double> paidBy = new HashMap<>();
 
     @ElementCollection
-    Map<User, Long> owedBy = new HashMap<>();
+    private Map<User, Double> owedBy = new HashMap<>();
 }
