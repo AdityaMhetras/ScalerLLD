@@ -11,10 +11,10 @@ public class CreateUserDTO {
     private String phoneNumber;
     private String hashedPassword;
 
-    public User user() {
+    public User user(String hashedPassword) {
         User user = new User();
-        user.setName(name);
-        user.setPhoneNumber(phoneNumber);
+        user.setName(this.name);
+        user.setPhoneNumber(this.phoneNumber);
         user.setHashedPassword(hashedPassword);
         return user;
     }
