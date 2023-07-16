@@ -1,6 +1,7 @@
 package com.example.atm.controller;
 
 import com.example.atm.exceptions.NotEnoughBalanceException;
+import com.example.atm.models.Transaction;
 import com.example.atm.service.ATMService;
 import com.example.atm.service.UserService;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,8 @@ public class ATMController {
     private ATMService atmService;
 
     private UserService userService;
+
+
 
     //checkBalance
     @GetMapping("/checkBalance/{userId}/pin/{pin}")

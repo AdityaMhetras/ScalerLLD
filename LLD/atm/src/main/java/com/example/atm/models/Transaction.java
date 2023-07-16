@@ -12,11 +12,10 @@ import static com.example.atm.models.TransactionStatus.IN_PROGRESS;
 @Getter
 @Setter
 public class Transaction {
-    private  long id;
+    private long id;
 
     private String atmId;
 
-    private Long cardNumber;
 
     private LocalDateTime transactionTime;
 
@@ -24,16 +23,15 @@ public class Transaction {
 
     private TransactionStatus status;
 
-    private UserAccount user;
+    private String userId;
 
-    private Long amount;
+    private Double amount;
 
-    public Transaction(String atmId, Long cardNumber, TransactionType type, UserAccount user, Long amount) {
+    public Transaction(String atmId, TransactionType type, String userId, Double amount) {
         this.transactionTime = LocalDateTime.now();
         this.atmId = atmId;
-        this.cardNumber = cardNumber;
         this.type = type;
-        this.user = user;
+        this.userId = userId;
         this.amount = amount;
         this.status = IN_PROGRESS;
     }

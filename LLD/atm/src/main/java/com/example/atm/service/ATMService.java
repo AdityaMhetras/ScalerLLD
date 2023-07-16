@@ -2,8 +2,7 @@ package com.example.atm.service;
 
 import com.example.atm.exceptions.InsufficientFundsException;
 import com.example.atm.exceptions.NotEnoughBalanceException;
-import com.example.atm.models.ATM;
-import com.example.atm.models.NotesComposition;
+import com.example.atm.models.*;
 import com.example.atm.repository.ATMRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -20,6 +19,8 @@ public class ATMService {
 
     public boolean withDraw(String userId, int pin, Double amount, String atmId) {
 
+        Transaction transaction = new Transaction( atmId,  TransactionType.WITHDRAW, userId, amount);
+
         ATM atm = atmRepository.getAtm(atmId);
 
         if(atm.getBalance() < amount) {
@@ -28,7 +29,15 @@ public class ATMService {
 
         NotesComposition customerNotesComp =  atm.getComposition().getCustomerNotesComposition( amount);
 
-        return true;
+        if(customerNotesComp != null) {
+            transaction.setStatus(TransactionStatus.SUCCESSFUL);
+            atm.getTransactions().add(transaction);
+            return true;
+        }
+        transaction.setStatus(TransactionStatus.FAILED);
+        atm.getTransactions().add(transaction);
+
+        return false;
     }
 
 }
