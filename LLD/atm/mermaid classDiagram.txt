@@ -1,0 +1,22 @@
+---
+title: ATM class diagram
+---
+classDiagram
+
+    ATM "1" --o "1" Location
+
+    class ATM{
+        -long id
+        -Location location
+        -CurrencyComposition composition
+        -ATMStatus status
+        -Double balance
+        -List<Transactions> transactions
+        +updateCurrencyComposition(Double) : void
+        +updateLocation(): void
+    }
+
+    class Location{
+        -String pin
+        -String address
+    }
