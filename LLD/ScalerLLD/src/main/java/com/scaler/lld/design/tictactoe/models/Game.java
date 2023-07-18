@@ -23,7 +23,9 @@ public class Game {
         }
 
         // update the board
-        board.getCells().get(move.getRow()).get(move.getColumn()).setSymbol(player.getSymbol());
+        board.getCells()
+                .get(move.getRow()).get(move.getColumn())
+                .setSymbol(player.getSymbol());
 
         //check winner
         if (checkWinner (player.getSymbol())) {
