@@ -24,10 +24,13 @@ public class Board {
     }
 
     public boolean isCellAvailable(Move move) {
-        return cells.get(move.getRow()).get(move.getCol()).getSymbol() == null;
+        return cells
+                .get(move.getRow())
+                .get(move.getCol())
+                .getSymbol() == null;
     }
 
-    public List<Cell> availableCells() {
+    public List<Cell> getAvailableCells() {
         return cells.stream()
                 .flatMap(List::stream)
                 .filter(cell -> cell.getSymbol() == null)
