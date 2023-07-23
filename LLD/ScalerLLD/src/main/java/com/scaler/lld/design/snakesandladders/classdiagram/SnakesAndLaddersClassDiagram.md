@@ -1,3 +1,5 @@
+```mermaid
+
 ---
 title: Snakes and Ladders class diagram
 ---
@@ -94,3 +96,4 @@ classDiagram
     class BaseCell{
         +nextPosition(): int
     }
+```
